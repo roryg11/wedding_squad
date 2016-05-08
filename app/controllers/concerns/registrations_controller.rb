@@ -8,7 +8,7 @@ class RegistrationsController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "You are signed up"
-      redirect_to root_path
+      redirect_to home_path
     else
       render :new
       flash[:alert] = "Your sign up could not be completed."
