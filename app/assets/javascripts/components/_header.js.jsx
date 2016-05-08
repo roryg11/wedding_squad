@@ -1,5 +1,5 @@
 var Header = React.createClass({
   render(){
-      return <div>THIS is a header!</div>
+      return <div className="container">THIS is a header!</div>
   }
 })
