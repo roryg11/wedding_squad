@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   get '/squad' => 'squad#new'
   post '/squad' => 'squad#create'
 
+  namespace :api do
+    resources :squads, only: [:create, :update, :destroy, :show_all_squads, :squad_members, :show, :index]
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

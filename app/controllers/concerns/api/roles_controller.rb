@@ -1,4 +1,4 @@
-class Api::RolesController < BaseController
+class Api::RolesController < Api::BaseController
 
   def create
     respond_with :api, Role.create(role_params)
