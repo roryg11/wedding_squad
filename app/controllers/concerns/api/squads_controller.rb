@@ -9,6 +9,16 @@ class Api::SquadsController < BaseController
     respond_with squad, json: squad
   end
 
+  def show_all_squads
+    respond_with current_user.squads
+  end
+
+  def squad_members  
+    squad = Squad.find(params["id"])
+    users = squad.users
+    respond_with users
+  end
+
   def destroy
     respond_with Squad.destroy(params["id"])
   end
