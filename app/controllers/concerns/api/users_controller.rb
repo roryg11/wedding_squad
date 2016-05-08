@@ -1,4 +1,4 @@
-class Api::UsersController < BaseController
+class Api::UsersController < Api::BaseController
 
   def create
     respond_with :api, User.create(user_params)

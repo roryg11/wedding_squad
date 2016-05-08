@@ -14,12 +14,14 @@ Rails.application.routes.draw do
   post '/sign-up' => 'registrations#create'
   get '/sign-in' => 'authentication#new', as: :signin
   post '/sign-in' => 'authentication#create'
-  get '/sign-out' => 'authentication#destroy', as: :signout
+  get '/signout' => 'authentication#destroy', as: :signout
 
   get '/squad' => 'squad#new'
   post '/squad' => 'squad#create'
 
-
+  namespace :api do
+    resources :squads, only: [:create, :update, :destroy, :show_all_squads, :squad_members, :show, :index]
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
