@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :squads, only: [:create, :update, :destroy, :show_all_squads, :squad_members, :show, :index]
+    resources :roles, only: []
   end
 
   # Example of regular route:
