@@ -1,0 +1,20 @@
+<div class="ui form segment">
+  <%= form_for @squad, url: squad_path, html: {class: "ui form", id: "squad-form"} do |f| %>
+    <div class="three fields">
+      <div class="field">
+        <%= f.label "Name of your Wedding Squad" %>
+        <div class="field">
+          <%= f.text_field :name %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label "Does you wedding have a hashtag? (Optional)" %>
+        <div class="field">
+          <%= f.text_field :hashtag %>
+        </div>
+      </div>
+
+    <%= f.submit "Submit", class: "ui submit button" %>
+
+  <% end  %>
+</div>
