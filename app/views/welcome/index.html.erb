@@ -1,3 +1,43 @@
 <h2>Hello <%= current_user.first_name %>  </h2>
+<p>Squads:
+  <% @squads.each do |squad| %>
+    <%= squad.name %>
+  <% end %>
+</p>
 
+<div class="ui form segment">
+  <%= form_for @user, url: home_path, html: {class: "ui form", id: "signup-form"} do |f| %>
+    <div class="three fields">
+      <div class="field">
+        <%= f.label :first_name %>
+        <div class="field">
+          <%= f.text_field :first_name %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :last_name %>
+        <div class="field">
+          <%= f.text_field :last_name %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :email %>
+        <div class="field">
+          <%= f.email_field :email %>
+        </div>
+      </div>
+    </div>
+    <% @squads.each do |squad| %>
+      <div class="ui radio checkbox">
+        <input id="squad" name="user[squad]" type="hidden">
+        <input type="radio" name="user[squad]" value="<%= squad.id %>">
+        <label><%= squad.name %></label>
+      </div>
+    <% end %>
+
+
+    <%= f.submit "Submit", class: "ui submit button" %>
+
+  <% end  %>
+</div>
 <%= react_component 'Main' %>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'registrations#new'
 
   get 'home' => 'welcome#index'
+  post '/home' => 'welcome#create'
 
   resources :users
 
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
 
   get '/squad' => 'squad#new'
   post '/squad' => 'squad#create'
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
