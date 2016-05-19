@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
 
   def index
+    @current_user = current_user
     @user = User.new
     squads = [];
     Role.where(user_id: current_user.id).find_each do |role|
@@ -10,12 +11,14 @@ class WelcomeController < ApplicationController
     end
 
     @squads = squads;
+    @users = User.all
   end
 
   def create
     @invite = User.new(first_name: invite_params[:first_name],
                         last_name: invite_params[:last_name],
                         email: invite_params[:email],
+                        avatar: invite_params[:avatar],
                         password: "test")
     if @invite.save
       @role = Role.new(user_id: @invite.id, squad_id: invite_params[:squad], role_type: "Standard")
@@ -34,7 +37,8 @@ class WelcomeController < ApplicationController
       :first_name,
       :last_name,
       :email,
-      :squad
+      :squad,
+      :avatar
     )
   end
 end

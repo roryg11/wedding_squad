@@ -6,7 +6,7 @@
 </p>
 
 <div class="ui form segment">
-  <%= form_for @user, url: home_path, html: {class: "ui form", id: "signup-form"} do |f| %>
+  <%= form_for @user, url: home_path, html: {class: "ui form", id: "signup-form", multipart: true} do |f| %>
     <div class="three fields">
       <div class="field">
         <%= f.label :first_name %>
@@ -35,11 +35,18 @@
       </div>
     <% end %>
 
+    <div id="userAvatarUploadTest">
+        <%= f.file_field :avatar %>
+    </div>
 
     <%= f.submit "Submit", class: "ui submit button" %>
 
   <% end  %>
 </div>
+
+<% @users.each do |user| %>
+  <%= image_tag user.avatar.url(:medium) %>
+<% end %>
 
 <a><%= link_to "Sign Out", signout_path, class: "button"%></a>
 <%= react_component 'Main' %>
