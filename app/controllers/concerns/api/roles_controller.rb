@@ -5,7 +5,7 @@ class Api::RolesController < Api::BaseController
   end
 
   def update
-    role = role.find(params["id"])
+    role = Role.find(params["id"])
     role.update_attributes(role_params)
     respond_with role, :json role
   end
