@@ -7,7 +7,7 @@ class Api::RolesController < Api::BaseController
   def update
     role = Role.find(params["id"])
     role.update_attributes(role_params)
-    respond_with role, :json role
+    respond_with role, json: role
   end
 
   def destroy
