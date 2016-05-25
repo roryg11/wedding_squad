@@ -13,6 +13,11 @@ class Api::SquadsController < Api::BaseController
     end
   end
 
+  def index
+    squads = Squad.all
+    respond_with squads
+  end
+
   def update
     squad = Squad.find(params["id"])
     squad.update_attributes(squad_params)
@@ -23,7 +28,7 @@ class Api::SquadsController < Api::BaseController
     respond_with current_user.squads
   end
 
-  def squad_members
+  def squad_m
     squad = Squad.find(params["id"])
     users = squad.users
     respond_with users
