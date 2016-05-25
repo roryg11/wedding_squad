@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "paperclip"
-gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk', '~> 1.6'
 
 #  react gem
 gem 'react-rails'
@@ -58,5 +58,5 @@ end
 group :production do
 
   gem 'pg'
-  
+
 end
