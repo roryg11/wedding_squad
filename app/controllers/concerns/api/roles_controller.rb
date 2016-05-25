@@ -19,7 +19,7 @@ class Api::RolesController < Api::BaseController
     params.require(:role).require(
       :type,
       :user_id,
-      :squad_id,
+      :squad_id
     )
   end
 
