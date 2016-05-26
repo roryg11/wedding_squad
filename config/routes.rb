@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'registrations#new'
 
   get 'home' => 'welcome#index'
+  post '/home' => 'welcome#create'
 
   resources :users
 

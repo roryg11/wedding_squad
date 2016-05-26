@@ -5,9 +5,9 @@ class Api::RolesController < Api::BaseController
   end
 
   def update
-    role = role.find(params["id"])
+    role = Role.find(params["id"])
     role.update_attributes(role_params)
-    respond_with role, :json role
+    respond_with role, json: role
   end
 
   def destroy
@@ -19,7 +19,7 @@ class Api::RolesController < Api::BaseController
     params.require(:role).require(
       :type,
       :user_id,
-      :squad_id,
+      :squad_id
     )
   end
 
