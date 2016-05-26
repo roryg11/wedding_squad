@@ -3,14 +3,19 @@ class Api::SquadsController < Api::BaseController
     squad = Squad.create(squad_params)
     if squad.save
       Role.create({
-        user_id: current_user,
+        user_id: current_user.id,
         squad_id: squad.id,
-        role_name: "owner"
+        role_type: "owner"
       })
       respond_with :api, squad
     else
       repond_with json: error, status: error.status
     end
+  end
+
+  def index
+    squads = Squad.all
+    respond_with squads
   end
 
   def update
@@ -23,7 +28,7 @@ class Api::SquadsController < Api::BaseController
     respond_with current_user.squads
   end
 
-  def squad_members
+  def squad_m
     squad = Squad.find(params["id"])
     users = squad.users
     respond_with users
@@ -38,6 +43,13 @@ class Api::SquadsController < Api::BaseController
     params.require(:squad).permit(
       :name,
       :hashtag
+    )
+  end
+  def role_params
+    params.require(:role).permit(
+      :role_name,
+      :user_id,
+      :squad_id
     )
   end
 end

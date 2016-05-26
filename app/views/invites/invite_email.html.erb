@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello!</h1>
+    <p>
+      <%= @sender.first_name %> has invited you to join the wedding squad!
+    </p>
+    <p>Click <%= link_to 'here', signup_path(:invite_token => @invite.token)  %>here to sign up</p>
+  </body>
+</html>
