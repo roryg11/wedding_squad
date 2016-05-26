@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523145015) do
+ActiveRecord::Schema.define(version: 20160526014207) do
 
   create_table "invites", force: :cascade do |t|
-    t.integer  "user_group_id"
+    t.integer  "squad_id"
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.string   "email"
     t.string   "token"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "roles", force: :cascade do |t|

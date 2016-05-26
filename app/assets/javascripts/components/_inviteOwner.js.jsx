@@ -3,15 +3,16 @@ var InviteOwner = React.createClass({
     var name = this.refs.name.value;
     var hashtag = this.refs.hashtag.value;
     $.ajax(
-      { url: '/api/squads',
+      { url: '/api/invites',
       type: 'POST',
-      data: { squad: { name: name, hashtag: hashtag } },
+      data: { invite: { sender_id: name, email: hashtag } },
       success: (response) => { console.log('it worked!', response); }
     });
   },
   render(){
     return <div>
-      THis is the invite your SO thing
+      <input>
+      <inpu>
     </div>
   }
 })
