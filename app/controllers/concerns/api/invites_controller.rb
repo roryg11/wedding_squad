@@ -20,6 +20,6 @@ class Api::InvitesController < Api::BaseController
 
   private
   def invite_params
-    params.require(:invite).permit(:email, :user_group_id)
+    params.require(:invite).permit(:email, :squad_id)
   end
 end

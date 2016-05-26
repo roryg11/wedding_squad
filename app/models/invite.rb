@@ -7,7 +7,7 @@ class Invite < ActiveRecord::Base
   before_save :check_user_existence
 
   def generate_token
-    self.token = Digest::SHA1.hexdigest([self.user_group_id, Time.now, rand].join)
+    self.token = Digest::SHA1.hexdigest([self.squad_id, Time.now, rand].join)
   end
 
   def check_user_existence
