@@ -35,6 +35,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'responders'
 
+# for the application.yml file and environment variables
+gem "figaro"
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

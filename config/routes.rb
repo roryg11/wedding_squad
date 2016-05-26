@@ -20,7 +20,11 @@ Rails.application.routes.draw do
   post '/squad' => 'squad#create'
 
   namespace :api do
-    resources :squads, only: [:create, :update, :destroy, :show_all_squads, :squad_members, :show, :index]
+    resources :squads, only: [:create, :update, :destroy, :show_all_squads, :squad_members, :show, :index], defaults: { format: 'json' }
+    resources :users, defaults: { format: 'json' }
+    resources :roles, only: [], defaults: { format: 'json' }
+    resources :invites, defaults: {format: 'json'}
+    get '/current_user' => 'users#current_user', defaults: { format: 'json' }
   end
 
   # Example of regular route:
