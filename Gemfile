@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "paperclip"
-gem 'aws-sdk', '~> 1.6'
+gem 'aws-sdk', '< 2.0'
 
 #  react gem
 gem 'react-rails'
@@ -38,6 +38,8 @@ gem 'responders'
 # for the application.yml file and environment variables
 gem "figaro"
 
+# Use pg as the database for Active Record in development
+gem 'pg'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -55,13 +57,9 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  # Use pg as the database for Active Record in development
-  gem 'pg'
 end
 
 group :production do
   gem 'rails_12factor'
-
-  gem 'pg'
 
 end
