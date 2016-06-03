@@ -1,11 +1,26 @@
 var InviteOwner = React.createClass({
+  getInitialState(){
+    return {
+      currentUser: ""
+    }
+  },
+  componentDidMount(){
+    this.state.currentSquad = this.getCurrentSquad();
+  },
+  handleCurrentSquad(response){
+    this.setState({currentSquad: response})
+  },
+  getCurrentSquad(){
+    $.getJSON('api/my_squads.json', this.handleCurrentSquad);
+  },
   createCoOwner(){
     var email = this.refs.email.value;
-    var sender_id = this.props.currentUser.id
+    var sender_id = this.props.currentUser.id;
+    var squad = this.state.currentSquad.id;
     $.ajax(
       { url: '/api/invites',
       type: 'POST',
-      data: { invite: { sender_id: 4, email: email } },
+      data: { invite: { sender_id: sender_id, email: email, squad_id: squad } },
       success: (response) => { console.log('it worked!', response); }
     });
   },

@@ -1,17 +1,14 @@
 class Api::InvitesController < Api::BaseController
   def create
     @invite = Invite.create(invite_params)
-    @invite.sender_id = current_user.id
     if @invite.save
       if @invite.recipient != nil
-         #send a notification email
-         InviteMailer.existing_user_invite(@invite).deliver
-         #Add the user to the user group
-         @invite.recipient.user_groups.push(@invite.user_group)
-         respond_with @invite
+        #send a notification email
+        InviteMailer.existing_user_invite(@invite).deliver
+        #Add the user to the user group
+        Role.create({user_id: @invite.recipient.id, squad_id: @invite.squad_id, role_type: "owner"})
       else
-         InviteMailer.new_user_invite(@invite, new_user_registration_path(:invite_token => @invite.token)).deliver
-         respond_with @invite
+        InviteMailer.new_owner_invite(@invite, signup_url(:invite_token => @invite.token)).deliver_later
       end
     else
       respond_with @invite.errors
@@ -20,6 +17,6 @@ class Api::InvitesController < Api::BaseController
 
   private
   def invite_params
-    params.require(:invite).permit(:email, :squad_id)
+    params.require(:invite).permit(:email, :squad_id, :sender_id)
   end
 end

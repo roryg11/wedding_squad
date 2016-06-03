@@ -3,12 +3,13 @@ var Body = React.createClass({
       return {currentUser: ""}
   },
   componentDidMount: function () {
-    this.state.data = this.getCurrentUser();
+    this.state.currentUser = this.getCurrentUser();
+  },
+  handleCurrentUser(response){
+    this.setState({currentUser: response})
   },
   getCurrentUser(){
-    $.getJSON('/api/current_user.json', (response) => {
-      this.setState({ currentUser: response });
-    }).bind(this);
+    $.getJSON('/api/current_user.json', this.handleCurrentUser);
   },
   render(){
     return <div className="container" >

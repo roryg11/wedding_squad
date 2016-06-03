@@ -6,13 +6,16 @@ class RegistrationsController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @token = params[:invite_token]
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "You are signed up"
-      redirect_to home_path
+        if @token != nil
+           squad =  Invite.find_by_token(@token).squad #find the user group attached to the invite
+           squad.roles.create({user_id: @user.id, role_type: "owner"})
+        end
+        redirect_to home_path
     else
-      render :new
-      flash[:alert] = "Your sign up could not be completed."
+      render json: @user, status: @user.errors
     end
   end
 

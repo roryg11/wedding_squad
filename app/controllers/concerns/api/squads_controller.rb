@@ -2,11 +2,7 @@ class Api::SquadsController < Api::BaseController
   def create
     squad = Squad.create(squad_params)
     if squad.save
-      Role.create({
-        user_id: current_user.id,
-        squad_id: squad.id,
-        role_type: "owner"
-      })
+      squad.roles.create({user_id: current_user.id, role_type: "owner"})
       respond_with :api, squad
     else
       repond_with json: error, status: error.status
@@ -26,6 +22,12 @@ class Api::SquadsController < Api::BaseController
 
   def show_all_squads
     respond_with current_user.squads
+  end
+
+  def show_owned_squads
+    owner_role = Role.where({user_id: current_user.id, role_type: "owner"})
+    squad = owner_role[0].squad
+    respond_with squad, json: squad
   end
 
   def squad_m
