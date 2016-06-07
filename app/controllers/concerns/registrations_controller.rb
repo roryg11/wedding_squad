@@ -1,7 +1,7 @@
 class RegistrationsController < ApplicationController
   def new
-    @user = User.new
     @token = params[:invite_token]
+    @user = User.new
   end
 
   def create
@@ -9,11 +9,16 @@ class RegistrationsController < ApplicationController
     @token = params[:invite_token]
     if @user.save
       session[:user_id] = @user.id
+      puts "User Saved!"
         if @token != nil
+          puts @token
            squad =  Invite.find_by_token(@token).squad #find the user group attached to the invite
+           puts squad
            squad.roles.create({user_id: @user.id, role_type: "owner"})
+           redirect_to home_path
+         else
+           redirect_to home_path
         end
-        redirect_to home_path
     else
       render json: @user, status: @user.errors
     end
@@ -27,7 +32,8 @@ class RegistrationsController < ApplicationController
       :email,
       :bio,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      :invite_token
     )
   end
 

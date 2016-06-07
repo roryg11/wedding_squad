@@ -5,6 +5,9 @@
 <div class="ui form segment">
   <%= form_for @user, url: signup_path, html: {class: "ui form", id: "signup-form"} do |f| %>
     <div class="three fields">
+      <% if @token != nil %>
+        <%= hidden_field_tag :invite_token, @token %>
+      <% end %>
       <div class="field">
         <%= f.label :first_name %>
         <div class="field">

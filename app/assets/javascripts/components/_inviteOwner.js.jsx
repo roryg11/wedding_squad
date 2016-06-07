@@ -1,11 +1,13 @@
 var InviteOwner = React.createClass({
   getInitialState(){
     return {
-      currentUser: ""
+      currentUser: "",
+      currentSquad: ""
     }
   },
   componentDidMount(){
     this.state.currentSquad = this.getCurrentSquad();
+    console.log(this.state.currentSquad);
   },
   handleCurrentSquad(response){
     this.setState({currentSquad: response})

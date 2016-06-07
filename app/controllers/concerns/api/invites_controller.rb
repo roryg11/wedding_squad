@@ -6,9 +6,12 @@ class Api::InvitesController < Api::BaseController
         #send a notification email
         InviteMailer.existing_user_invite(@invite).deliver
         #Add the user to the user group
-        Role.create({user_id: @invite.recipient.id, squad_id: @invite.squad_id, role_type: "owner"})
+        squad = Squad.find(@invite.squad_id)
+        squad.roles.create({user_id: @invite.recipient.id, squad_id: @invite.squad_id, role_type: "owner"})
+        respond_with squad, location: home_path
       else
         InviteMailer.new_owner_invite(@invite, signup_url(:invite_token => @invite.token)).deliver_later
+        respond_with squad, location: home_path
       end
     else
       respond_with @invite.errors
