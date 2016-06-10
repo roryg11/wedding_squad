@@ -5,6 +5,6 @@ class InviteMailer < ApplicationMailer
     @invite = invite
     @recipient = @invite.recipient
     @sender = invite.sender
-    mail(to: @invite.email, subject: '@sender.first_name has sent you an invitation to a wedding party')
+    mail(to: @invite.email, subject: '#{@sender.first_name} has sent you an invitation to a wedding party')
   end
 end

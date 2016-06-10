@@ -10,7 +10,7 @@ class Api::InvitesController < Api::BaseController
         squad.roles.create({user_id: @invite.recipient.id, squad_id: @invite.squad_id, role_type: "owner"})
         respond_with squad, location: home_path
       else
-        InviteMailer.new_owner_invite(@invite, signup_url(:invite_token => @invite.token)).deliver_later
+        InviteMailer.new_owner_invite(@invite, signup_path(:invite_token => @invite.token)).deliver_later
         respond_with squad, location: home_path
       end
     else
