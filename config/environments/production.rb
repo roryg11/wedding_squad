@@ -85,15 +85,14 @@ Rails.application.configure do
     }
   }
 
-  # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-   :address              => "smtp.gmail.com",
-   :port                 => 25,
-   :doman                => "gmail.com",
-   :user_name            => ENV['gmail_username'],
-   :password             => ENV['gmail_password'],
-   :authentication       => "plain",
-   :enable_starttls_auto => true
+    :user_name => ENV['sengrid_username'],
+    :password => ENV['sendgrid_password'],
+    :domain => 'wedding-squad.herokuapp.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 25,
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
 
   # Do not dump schema after migrations.
