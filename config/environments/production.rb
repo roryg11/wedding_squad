@@ -85,17 +85,6 @@ Rails.application.configure do
     }
   }
 
-  #sengrid mail settings
-  config.action_mailer.smtp_settings = {
-    :user_name => ENV['sengrid_username'],
-    :password => ENV['sendgrid_password'],
-    :domain => 'wedding-squad.herokuapp.com',
-    :address => 'smtp.sendgrid.net',
-    :port => 25,
-    :authentication => :plain,
-    :enable_starttls_auto => true
-  }
-
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
