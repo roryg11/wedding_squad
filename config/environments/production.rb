@@ -85,8 +85,9 @@ Rails.application.configure do
     }
   }
 
+  #sengrid mail settings
   config.action_mailer.smtp_settings = {
-    :user_name => ENV['sengrid_username'],
+    :username => ENV['sengrid_username'],
     :password => ENV['sendgrid_password'],
     :domain => 'wedding-squad.herokuapp.com',
     :address => 'smtp.sendgrid.net',
